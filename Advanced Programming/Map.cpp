@@ -4,10 +4,12 @@
 #include <cstdio>
 
 #include "Map.h"
+#include "Item.h"
 #include "Player.h"
 
 using namespace std;
 
+Item _item_;
 Player _player;
 int starting = 0;
 int numRoom;
@@ -56,14 +58,29 @@ void Map::Cave() {
         DeepCave();
     }
     else if (_player.Orders(commandMove, numRoom) == 2) {
-        cout << "There's an exit, but you will need a rope\n";
+        if (_item_.WinItem()) {
+            cout << "***************************************************\n";
+            cout << "*_____.___.               __      __              *\n";
+            cout << "*\\__  |   | ____  __ __  /  \\    /  \\____   ____  *\n";
+            cout << "* /   |   |/  _ \\|  |  \\ \\   \\/\\/   /  _ \\ /    \\ *\n";
+            cout << "* \\____   (  <_> )  |  /  \\        (  <_> )   |  \\*\n";
+            cout << "* / ______|\\____/|____/    \\__/\\  / \\____/|___|  /*\n";
+            cout << "* \\/                            \\/             \\/ *\n";
+            cout << "***************************************************\n\n";
+            cout << "You made it! You made your way out of the Mountains of Moria!\n\n";
+            return;
+        }
+        cout << "There's an exit, but you will need a rope with a hook in one side or something similar\n";
         Cave();
     }
     else if (_player.Orders(commandMove, numRoom) == 5) {
-        cout << "There's no items in here\n";
+        _item_.ItemsRoom(numRoom);
         cout << "There's a path to North\n";
         cout << "There's an exit to South\n";
         Cave();
+    }
+    else if (_player.Orders(commandMove, numRoom) == 10) {
+        return;
     }
     else {
         cout << "There's no path " + commandMove + "\n";
@@ -119,10 +136,13 @@ void Map::DeepCave() {
         DarknessCave();
     }
     else if (_player.Orders(commandMove, numRoom) == 5) {
-        cout << "There's a Lighter\n";
+        _item_.ItemsRoom(numRoom);
         cout << "There's a path to South\n";
         cout << "There's a path to East\n";
         DeepCave();
+    }
+    else if (_player.Orders(commandMove, numRoom) == 10) {
+        return;
     }
     else {
         cout << "There's no path " + commandMove + "\n";
@@ -160,7 +180,12 @@ void Map::DarknessCave() {
     cout << "**********************************************************************************\n";
     
     if (starting == 2) {
-        cout << "You can't see where you are.\n Looks like you could you a light.\n";
+        if (!_item_.LightRoom()) {
+            cout << "You can't see where you are.\n Looks like you could you a light.\n";
+        }
+        else {
+            cout << "You can see thanks to the Torch.\n";
+        }
         starting++;
     }
 
@@ -178,10 +203,19 @@ void Map::DarknessCave() {
         DeepCave();
     }
     else if (_player.Orders(commandMove, numRoom) == 5) {
-        cout << "There's a torch by your feet, you can't see anything else, maybe you can light it up\n";
-        //cout << "There's a path to North\n";
-        //cout << "There's a path to West\n";
+        if (_item_.LightRoom()) {
+            _item_.ItemsRoom(numRoom);
+            cout << "There's a path to North\n";
+            cout << "There's a path to West\n";
+        }
+        else {
+            cout << "You can't see anything else, maybe you can light it up\n";
+        }
+
         DarknessCave();
+    }
+    else if (_player.Orders(commandMove, numRoom) == 10) {
+        return;
     }
     else {
         cout << "There's no path " + commandMove + "\n";
@@ -233,10 +267,12 @@ void Map::ElvenForest() {
         DarknessCave();
     }
     else if (_player.Orders(commandMove, numRoom) == 5) {
-        cout << "There's some lianas in the ground, maybe if you combine them with a hook...\n";
-        //cout << "There's a path to North\n";
+        _item_.ItemsRoom(numRoom);
         cout << "There's a path to South\n";
         ElvenForest();
+    }
+    else if (_player.Orders(commandMove, numRoom) == 10) {
+        return;
     }
     else {
         cout << "There's no path " + commandMove + "\n";

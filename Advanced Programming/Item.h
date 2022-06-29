@@ -7,12 +7,12 @@ using namespace std;
 
 enum ItemState
 {
-	PLAYER,
-	ROOM0,
-	ROOM1,
-	ROOM2,
-	ROOM3,
-	NOTGETABLE
+	PLAYER = 0,
+	ROOM0 = 1,
+	ROOM1 = 2,
+	ROOM2 = 3,
+	ROOM3 = 4,
+	NOTGETABLE = 5
 };
 enum ItemComb
 {
@@ -30,6 +30,11 @@ public:
 	~Item();
 
 	bool GetItem(string order, int num);
+	bool DropItem(string order, int num);
+	bool CombineItem(string order, int num);
+	bool LightRoom();
+	bool WinItem();
+	void ItemsRoom(int num);
 	void Inventory();
 
 	int GetValue() const;

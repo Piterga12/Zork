@@ -9,15 +9,20 @@
 Item _item;
 
 using namespace std;
-const int numOpt = 7;
+const int numOpt = 10;
 string newOrder;
+string newOrder1;
+string newOrder2;
 
 const char* options[numOpt]
-= { "North", "South", "West", "East", "Examine", "Get", "Inventory"};
+= { "North", "South", "West", "East", "Examine", "Get", "Inventory", "Drop", "Combine", "Exit"};
 
-char ord[4];
+char ord[3];
+char ord1[5];
+char ord2[7];
 
 int Player::Orders(string order, int num) {
+	//For GettingItems
 	for (int j = 0; j < order.length() && j < 3; j++) {
 			ord[j] = order.at(j);				
 	}
@@ -28,9 +33,36 @@ int Player::Orders(string order, int num) {
 			return false;
 		}
 	}
+	else {
+		//For DropingItems
+		for (int j = 0; j < order.length() && j < 4; j++) {
+			ord1[j] = order.at(j);
+		}
+		newOrder1 = ord1;
+
+		if (newOrder1 == options[7]) {
+			if (_item.DropItem(order, num) == true) {
+				return false;
+			}
+		}
+		else {
+			//For CombiningItems
+			for (int j = 0; j < order.length() && j < 7; j++) {
+				ord2[j] = order.at(j);
+			}
+			newOrder2 = ord2;
+			if (newOrder2 == options[8]) {
+				if (_item.CombineItem(order, num) == true) {
+					return false;
+				}
+			}
+		}
+	}
+
+	//For the rest
 	for (int i = 0; i < numOpt; i++) {		
 		if (order == options[i]) {
-			if (i == 6) {
+			if (i == 6) { //For Inventory
 				_item.Inventory();
 				return false;
 			}
