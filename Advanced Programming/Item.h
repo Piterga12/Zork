@@ -2,17 +2,23 @@
 #define __Item__
 
 #include <string>
-#include <list>
-
-
 
 using namespace std;
 
-enum ItemType
+enum ItemState
 {
-	COMMON,
-	WEAPON,
-	ARMOUR
+	PLAYER,
+	ROOM0,
+	ROOM1,
+	ROOM2,
+	ROOM3,
+	NOTGETABLE
+};
+enum ItemComb
+{
+	COMBINE0,
+	COMBINE1,
+	NOTCOMBINABLE
 };
 
 
@@ -20,20 +26,22 @@ class Item
 {
 public:
 	Item() = default;
-	Item(const char* name, const char* description, ItemType item_type = COMMON);
+	Item(const char* name, const char* description, ItemState item_type, ItemComb item_comb);
 	~Item();
 
-	void GetItem(string order);
+	bool GetItem(string order, int num);
+	void Inventory();
 
 	int GetValue() const;
 
 public:
 	std::string name;
+	std::string description;
 	int min_value;
 	int max_value;
-	ItemType item_type;
+	ItemState item_type;
+	ItemComb item_comb;
 
-	std::list<Item*> container;
 };
 
 #endif

@@ -33,20 +33,31 @@ int main() {
             cin >> commandName;
         }
         if (commandName == "Start") {
-            Item* Ligther = new Item("Ligther", "Looks like you could use it once.");
-            Item* Sword = new Item("Sword", "Looks like you can kill with it.");
             _map.Cave();
         }
         else if (commandName == "Controls") {
-            cout << "******************************\n";
-            cout << "******************************\n";
-            cout << "****  Moving Options:     ****\n";
-            cout << "****    -  North          ****\n";
-            cout << "****    -  South          ****\n";
-            cout << "****    -  West          ****\n";
-            cout << "****    -  East          ****\n";
-            cout << "******************************\n";
-            cout << "******************************\n\n";
+            cout << "************************************\n";
+            cout << "************************************\n";
+            cout << "****  Moving Options:           ****\n";          
+            cout << "****    -  North                ****\n";
+            cout << "****    -  South                ****\n";
+            cout << "****    -  West                 ****\n";
+            cout << "****    -  East                 ****\n";
+            cout << "****                            ****\n";
+            cout << "****  Items Options:            ****\n";
+            cout << "****    -  GetItem              ****\n";
+            cout << "****      +Ex: GetSword         ****\n";
+            cout << "****    -  DropItem             ****\n";
+            cout << "****      +Ex: DropSword        ****\n";
+            cout << "****    -  CombineItem          ****\n";
+            cout << "****      +Ex: CombineSword     ****\n";
+            cout << "****           Handle           ****\n";
+            cout << "****    -  Inventory            ****\n";
+            cout << "****                            ****\n";
+            cout << "****  Other Options:            ****\n";
+            cout << "****    -  Examine              ****\n";
+            cout << "************************************\n";
+            cout << "************************************\n\n";
         }
         
     }

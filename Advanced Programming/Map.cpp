@@ -48,18 +48,18 @@ void Map::Cave() {
 
     cin >> commandMove;
     
-    while (!_player.Orders(commandMove)) {
+    while (!_player.Orders(commandMove, numRoom)) {
         cin >> commandMove;
     }
-    if (_player.Orders(commandMove) == 1) {
+    if (_player.Orders(commandMove, numRoom) == 1) {
         cout << "You go North\n";
         DeepCave();
     }
-    else if (_player.Orders(commandMove) == 2) {
+    else if (_player.Orders(commandMove, numRoom) == 2) {
         cout << "There's an exit, but you will need a rope\n";
         Cave();
     }
-    else if (_player.Orders(commandMove) == 5) {
+    else if (_player.Orders(commandMove, numRoom) == 5) {
         cout << "There's no items in here\n";
         cout << "There's a path to North\n";
         cout << "There's an exit to South\n";
@@ -107,18 +107,18 @@ void Map::DeepCave() {
 
     cin >> commandMove;
     
-    while (!_player.Orders(commandMove)) {
+    while (!_player.Orders(commandMove, numRoom)) {
         cin >> commandMove;
     }
-    if (_player.Orders(commandMove) == 2) {
+    if (_player.Orders(commandMove, numRoom) == 2) {
         cout << "You go South\n";
         Cave();
     }
-    else if (_player.Orders(commandMove) == 4) {
+    else if (_player.Orders(commandMove, numRoom) == 4) {
         cout << "You go East\n";
-        DeepCave();
+        DarknessCave();
     }
-    else if (_player.Orders(commandMove) == 5) {
+    else if (_player.Orders(commandMove, numRoom) == 5) {
         cout << "There's a Lighter\n";
         cout << "There's a path to South\n";
         cout << "There's a path to East\n";
@@ -127,6 +127,120 @@ void Map::DeepCave() {
     else {
         cout << "There's no path " + commandMove + "\n";
         DeepCave();
+    }
+}
+
+void Map::DarknessCave() {
+    string commandMove;
+    numRoom = 3;
+    
+    
+    cout << "**********************************************************************************\n";
+    cout << "*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*\n";
+    cout << "*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*\n";
+    cout << "*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*\n";
+    cout << "*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*\n";
+    cout << "*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*\n";
+    cout << "*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*\n";
+    cout << "*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*\n";
+    cout << "*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*\n";
+    cout << "*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*\n";
+    cout << "*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*\n";
+    cout << "*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*\n";
+    cout << "*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*\n";
+    cout << "*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*\n";
+    cout << "*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*\n";
+    cout << "*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*\n";
+    cout << "*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*\n";
+    cout << "*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*\n";
+    cout << "*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*\n";
+    cout << "*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*\n";
+    cout << "*MMMMMM   Darkness Cave   MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*\n";
+    cout << "*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*\n";
+    cout << "**********************************************************************************\n";
+    
+    if (starting == 2) {
+        cout << "You can't see where you are.\n Looks like you could you a light.\n";
+        starting++;
+    }
+
+    cin >> commandMove;
+    
+    while (!_player.Orders(commandMove, numRoom)) {
+        cin >> commandMove;
+    }
+    if (_player.Orders(commandMove, numRoom) == 1) {
+        cout << "You go North\n";
+        ElvenForest();
+    }
+    else if (_player.Orders(commandMove, numRoom) == 3) {
+        cout << "You go West\n";
+        DeepCave();
+    }
+    else if (_player.Orders(commandMove, numRoom) == 5) {
+        cout << "There's a torch by your feet, you can't see anything else, maybe you can light it up\n";
+        //cout << "There's a path to North\n";
+        //cout << "There's a path to West\n";
+        DarknessCave();
+    }
+    else {
+        cout << "There's no path " + commandMove + "\n";
+        DarknessCave();
+    }
+}
+
+void Map::ElvenForest() {
+    string commandMove;
+    numRoom = 4;
+    
+    
+    cout << "**********************************************************************************\n";
+    cout << "* ....@@ ..... @ .... @ .............   ....... .....; .... *** .....*\n";
+    cout << "* .....\@\....@ .... @ ............................. #  .. *****  ...*\n";
+    cout << "*  @@@.. @@@@@  @@@@@@___.. ....... ...%..... ...  {###}  *******    *\n";
+    cout << "* ....@-@..@ ..@......@@@\...... %...... ....... <## ####>********   *\n";
+    cout << "*   @@@@\...@ @ ........\@@@@ ..... ...... ....... {###}***********  *\n";
+    cout << "* ....%..@  @@ /@@@@@ . ....... ...............<###########> ******* *\n";
+    cout << "* ...... .@-@@@@ ...V......     .... %.......... {#######}******* ****\n";
+    cout << "* ...... .  @@ .. ..v.. .. . { } ............<###############>********\n";
+    cout << "* ......... @@ .... ........ {^^,     .......   {## ######}***** *****\n";
+    cout << "* ..%..... @@ .. .%.... . .. (   `-;   ... <###################> *****\n";
+    cout << "* . .... . @@ . .... .. _  .. `;;~~ ......... {#############}*********\n";
+    cout << "* .... ... @@ ... ..   /(______); .. ....<################  #####>****\n";
+    cout << "* . .... ..@@@ ...... (         (  .........{##################}******\n";
+    cout << "* ......... @@@  ....  |:------( )  .. <##########################>***\n";
+    cout << "*  @@@@ ....@@@  ... _// ...... \\ ...... {###   ##############}******\n";
+    cout << "* @@@@@@@  @@@@@ .. / /@@@@@@@@@ vv  <##############################>*\n";
+    cout << "* @@@@@@@ @@@@@@@ @@@@@@@@@@@@@@@@@@@ ..... @@@@@@  @@@@@@@  @@@@    *\n";
+    cout << "* @@@@@@###@@@@@### @@@@@@@@@@@@@@@@@@ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@ *\n";
+    cout << "* @@@@@@@@###@##@@ @@@@@@@@@@@@@@@@@@@@@ @@@@@   @@@@@@@@@@@@@@@@@@@ *\n";
+    cout << "* @@@@@ Elven Forest @@@@@@@@@@@@@@@@@@@@@@ @@@@@@@@@@@@@@@@@@@@@@@@ *\n";
+    cout << "* -@@@@@@@@@#####@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*\n";
+    cout << "**********************************************************************************\n";
+    
+    if (starting == 3) {
+        cout << "Somehow you find yourself in an elven forest\n";
+        starting++;
+    }
+
+    cin >> commandMove;
+    
+    while (!_player.Orders(commandMove, numRoom)) {
+        cin >> commandMove;
+    }
+    if (_player.Orders(commandMove, numRoom) == 2) {
+        cout << "You go South\n";
+        DarknessCave();
+    }
+    else if (_player.Orders(commandMove, numRoom) == 5) {
+        cout << "There's some lianas in the ground, maybe if you combine them with a hook...\n";
+        //cout << "There's a path to North\n";
+        cout << "There's a path to South\n";
+        ElvenForest();
+    }
+    else {
+        cout << "There's no path " + commandMove + "\n";
+        ElvenForest();
     }
 }
 

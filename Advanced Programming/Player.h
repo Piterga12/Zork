@@ -8,7 +8,7 @@ class Player
 {
 public:
 
-	int Orders(string order);
+	int Orders(string order, int num);
 
 
 public:

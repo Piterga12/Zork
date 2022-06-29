@@ -10,6 +10,8 @@ public:
 
 	void Cave();
 	void DeepCave();
+	void DarknessCave();
+	void ElvenForest();
 
 public:
 
