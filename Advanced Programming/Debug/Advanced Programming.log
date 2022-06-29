@@ -1,4 +1,6 @@
-﻿  Map.cpp
+﻿  Advanced Programming.cpp
+  Item.cpp
+  Map.cpp
 F:\UnityVarios\Advanced Programming\Advanced Programming\Map.cpp(31,13): warning C4129: ' ': secuencia de escape de carácter no reconocida
 F:\UnityVarios\Advanced Programming\Advanced Programming\Map.cpp(32,13): warning C4129: ' ': secuencia de escape de carácter no reconocida
 F:\UnityVarios\Advanced Programming\Advanced Programming\Map.cpp(233,13): warning C4129: '@': secuencia de escape de carácter no reconocida
@@ -6,4 +8,9 @@ F:\UnityVarios\Advanced Programming\Advanced Programming\Map.cpp(233,13): warnin
 F:\UnityVarios\Advanced Programming\Advanced Programming\Map.cpp(235,13): warning C4129: '.': secuencia de escape de carácter no reconocida
 F:\UnityVarios\Advanced Programming\Advanced Programming\Map.cpp(236,13): warning C4129: '.': secuencia de escape de carácter no reconocida
 F:\UnityVarios\Advanced Programming\Advanced Programming\Map.cpp(236,13): warning C4129: '@': secuencia de escape de carácter no reconocida
+  Player.cpp
+F:\UnityVarios\Advanced Programming\Advanced Programming\Player.cpp(26,20): warning C4018: '<': no coinciden signed/unsigned
+F:\UnityVarios\Advanced Programming\Advanced Programming\Player.cpp(38,21): warning C4018: '<': no coinciden signed/unsigned
+F:\UnityVarios\Advanced Programming\Advanced Programming\Player.cpp(50,22): warning C4018: '<': no coinciden signed/unsigned
+  Generando código...
   Advanced Programming.vcxproj -> F:\UnityVarios\Advanced Programming\Debug\Advanced Programming.exe
